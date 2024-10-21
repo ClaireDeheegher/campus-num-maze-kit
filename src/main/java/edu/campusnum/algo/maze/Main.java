@@ -25,7 +25,7 @@ public class Main {
             List<MazeCell> maze = mazeLoader.getMaze(mazeSize, mazeName);
             boolean[] walls = maze.get(0).getWalls();
 
-            System.out.println(Arrays.toString(walls));
+            System.out.println((walls[0]));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();

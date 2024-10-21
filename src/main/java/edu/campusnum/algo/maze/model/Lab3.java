@@ -14,7 +14,7 @@ public class Lab3 extends JPanel {
             // We create a new JsonMazeReader object with the file name as parameter
             JsonMazeReader mazeLoader = new JsonMazeReader("mazes.json");
             // Specify the size and the name of the maze to load
-            int mazeSize = 3;
+            int mazeSize = 5;
             String mazeName = "ex-0";
             // We get the maze as a list of MazeCell
             maze = mazeLoader.getMaze(mazeSize, mazeName);
@@ -35,16 +35,31 @@ public class Lab3 extends JPanel {
 
     public void drawMaze(int x, int y, int x2, int y2, int length, java.util.List mazeCellList, Graphics g) {
         int i;
-        for (i = 0; i < mazeCellList.size(); i++) {
+        int list = mazeCellList.size();
+        int newRow = (int)Math.sqrt(list);
+        int rowChange = newRow;
+        if (list%Math.sqrt(list)!=0)
+            {System.out.println("Error, the number of cells is not valid");}
+        for (i = 0; i < list; i++) {
             MazeCell cell = (MazeCell) mazeCellList.get(i);
             boolean[] walls = cell.getWalls();
             boolean entrance = cell.getStart();
             boolean exit = cell.getExit();
-            if (i == 3 || i == 6) {
+            if (entrance == true) {
+                g.setColor(Color.green);
+                g.fillRect(x, y, 100, 100);
+            }
+            if (exit == true) {
+                g.setColor(Color.red);
+                g.fillRect(x, y, 100, 100);
+            }
+            g.setColor(Color.black);
+            if (i==rowChange) {
                 x = 20;
                 y = y2;
                 x2 = 120;
                 y2 = y2 + length;
+                rowChange = rowChange + newRow;
             }
             if (walls[0] == true) {
                 g.drawLine(x, y, x2, y);
@@ -58,17 +73,10 @@ public class Lab3 extends JPanel {
             if (walls[3] == true) {
                 g.drawLine(x, y, x, y2);
             }
-            if (entrance == true) {
-                g.setColor(Color.green);
-                g.fillRect(x, y, 100, 100);
-            }
-            if (exit == true) {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 100, 100);
-            }
+
             x = x2;
             x2 = x2 + length;
-            g.setColor(Color.black);
+
         }
     }
 }
