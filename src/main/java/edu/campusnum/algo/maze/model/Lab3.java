@@ -14,7 +14,7 @@ public class Lab3 extends JPanel {
             // We create a new JsonMazeReader object with the file name as parameter
             JsonMazeReader mazeLoader = new JsonMazeReader("mazes.json");
             // Specify the size and the name of the maze to load
-            int mazeSize = 5;
+            int mazeSize = 3;
             String mazeName = "ex-0";
             // We get the maze as a list of MazeCell
             maze = mazeLoader.getMaze(mazeSize, mazeName);
