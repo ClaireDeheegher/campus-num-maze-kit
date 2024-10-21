@@ -74,6 +74,16 @@ public class MazeCell {
         return posY;
     }
 
+    public boolean getExit() {
+        return exit;
+    }
+    public boolean getStart() {
+        return start;
+    }
+    public boolean[] getWalls() {
+        return walls;
+    }
+
     /**
      * @return true if the cell is the exit
      */
